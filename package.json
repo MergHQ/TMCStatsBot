@@ -1,0 +1,11 @@
+{
+    "name": "TMCStatsBot",
+    "description": "TMC stats for telegram",
+    "author": "Hugeli",
+    "version": "1.0.0",
+    "main": "main.js",
+    "dependencies": {
+        "needle": "1.4.2",
+        "node-telegram-bot-api": "0.24.0"
+    }
+}
