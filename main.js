@@ -3,7 +3,17 @@
 const TelegramClient = require('node-telegram-bot-api');
 const needle = require('needle');
 const FS = require('fs');
-const courses = JSON.parse(FS.readFileSync('courses.json', 'utf8')).courses;
+const credentials = JSON.parse(FS.readFileSync('credentials.json', 'utf8'));
+var courses = null;
+
+needle.get('https://tmc.mooc.fi/org/hy/courses.json?api_version=7', {
+  headers: {
+    'Authorization': 'Basic ' + credentials.B64Creds
+  }
+}, (err, res) => {
+  if (!err)
+    courses = res.body.courses;
+});
 
 const getStats = courceId => {
   return `https://tmc.mooc.fi/org/hy/courses/${courceId}/points.json?api_version=7`;
